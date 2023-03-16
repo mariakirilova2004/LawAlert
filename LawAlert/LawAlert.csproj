@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\LawAlert.Core\LawAlert.Core.csproj" />
   </ItemGroup>
 
