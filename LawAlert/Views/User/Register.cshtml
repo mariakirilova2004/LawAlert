@@ -1,0 +1,138 @@
+﻿@using LawAlert.Core.Models.User
+@model UserRegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+<div class="container-fluid  p-0 mb-5 pb-5">
+    <div class="container py-5">
+        <div class="bg-appointment rounded">
+            <div class="row h-100 align-items-center justify-content-center" style="margin-bottom: 48px">
+                <div class="col-lg-6 py-5">
+                    <div class="rounded p-5 my-5" style="background: rgba(55, 55, 63, .7);">
+                        <h1 class="text-center text-white mb-4">@ViewData["Title"]</h1>
+                        <form method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control border-0 p-4" id="UserName" autocomplete="UserName" aria-required="true" placeholder="User Name" asp-for="@Model.UserName" />
+                                <span asp-validation-for="@Model.UserName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control border-0 p-4" id="firstname" autocomplete="firstname" aria-required="true" placeholder="First Name" asp-for="@Model.FirstName" />
+                                <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control border-0 p-4" id="LastName" autocomplete="LastName" aria-required="true" placeholder="Last Name" asp-for="@Model.LastName" />
+                                <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control border-0 p-4" id="LastName" autocomplete="PhoneNumber" aria-required="true" placeholder="Phone Number" asp-for="@Model.PhoneNumber" />
+                                <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control border-0 p-4" id="Email" autocomplete="Email" aria-required="true" placeholder="Your Email" asp-for="@Model.Email">
+                                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <div class="date" id="date" data-target-input="nearest">
+                                    <input type="text" value="01/01/2023" class="form-control border-0 p-4 datetimepicker-input" aria-required="true" autocomplete="BirthDate" placeholder="Select Birth Date" data-target="#date" data-toggle="datetimepicker" asp-for="@Model.BirthDate" />
+                                    <span asp-validation-for="@Model.BirthDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <select class="custom-select border-0 px-4" asp-for="InterestId" style="height: 47px;">
+                                    @foreach (var interest in Model.Interests)
+                                    {
+                                        <option value="@interest.Id" placeholder="">@interest.Type</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control border-0 p-4" id="password" autocomplete="password" aria-required="true" placeholder="Password" asp-for="@Model.Password">
+                                <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control border-0 p-4" id="password" aria-required="true" placeholder="Confirm Password" asp-for="@Model.ConfirmPassword">
+                                <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary btn-block border-0 py-3" type="submit">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Booking Start -->
+@*<form method="post">
+    <div class="row g-3
+    <div class="col-md-6">
+    <div class="form-floating">
+    <input type="text" class="form-control" id="firstname" autocomplete="firstname" aria-required="true" placeholder="First Name" asp-for="@Model.FirstName">
+    <label for="secondname">First Name</label>
+    <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+    </div>
+    </div>
+    <div class="col-md-6">
+    <div class="form-floating">
+    <input type="text" class="form-control" id="lastname" autocomplete="lastname" aria-required="true" placeholder="Last Name" asp-for="@Model.LastName">
+    <label for="lastname">Last Name</label>
+    <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+    </div>
+    </div>
+    <div class="col-md-6">
+    <div class="form-floating">
+    <input type="text" class="form-control" id="phonenumber" autocomplete="phonenumber" aria-required="true" placeholder="Phone Number" asp-for="@Model.PhoneNumber">
+    <label for="phonenumber">Phone Number</label>
+    <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+    </div>
+    </div>
+    <div class="col-md-6">
+    <div class="form-floating">
+    <input type="email" class="form-control" id="email" autocomplete="email" aria-required="true" placeholder="Email" asp-for="@Model.Email">
+    <label for="email">Email</label>
+    <span asp-validation-for="@Model.Email" class="text-danger"></span>
+    </div>
+    </div>
+    <div class="col-md-6">
+    <div class="form-floating">
+    <input type="date" value="01/01/2023" class="form-control" id="BirthDate" autocomplete="BirthDate" aria-required="true" placeholder="Birth Date" asp-for="@Model.BirthDate">
+    <label for="BirthDate">Birth Date</label>
+    <span asp-validation-for="@Model.BirthDate" class="text-danger"></span>
+    </div>
+    </div>
+    <div class="col-md-6">
+    <div class="form-floating">
+    <select asp-for="InterestId" class="form-control" id ="InterestId">
+    @foreach (var interest in Model.Interests)
+    {
+    <option value="@interest.Id" placeholder="">@interest.Id</option>
+    }
+    </select>
+    <label for="InterestId">Interest</label>
+    </div>
+    </div>
+    <div class="col-md-6">
+    <div class="form-floating">
+    <input type="password" class="form-control" id="password" autocomplete="password" aria-required="true" placeholder="Password" asp-for="@Model.Password">
+    <label for="password">Password</label>
+    <span asp-validation-for="@Model.Password" class="text-danger"></span>
+    </div>
+    </div>
+    <div class="col-md-6">
+    <div class="form-floating">
+    <input type="password" class="form-control" id="password" aria-required="true" placeholder="Confirm Password" asp-for="@Model.ConfirmPassword">
+    <label for="password">Confirm Password</label>
+    <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
+    </div>
+    </div>
+    <div class="col-12">
+    <button class="btn btn-primary w-100 py-3" type="submit">Add</button>
+    </div>
+    </div>
+    <form>*@
+<!-- Booking End -->
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}

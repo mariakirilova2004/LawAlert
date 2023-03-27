@@ -1,19 +1,21 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using LawAlert.Core.Models.Interest;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static LawAlert.Core.Attributes.CustomBirthDate;
 using static LawAlert.Infrastructure.Data.DataConstants.User;
 
-
-namespace LawAlert.Infrastructure.Data.Entities.Accounts
+namespace LawAlert.Core.Models.User
 {
-    public class User : IdentityUser
+    public class UserRegisterViewModel
     {
+        [Required]
+        [StringLength(UserMaxLengthFirstName, MinimumLength = UserMinLengthFirstName)]
+        public string UserName { get; set; }
+
         /// <summary>
         /// Contains the first name of the user
         /// </summary>
@@ -42,6 +44,25 @@ namespace LawAlert.Infrastructure.Data.Entities.Accounts
         [CustomBirthDate]
         public DateTime BirthDate { get; set; }
 
-        public virtual List<Interest>? Interests { get; set; } = new List<Interest>();
+        [Required(ErrorMessage = "Email is required.")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address.")]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(UserMaxLengthPassword, ErrorMessage = "Must be between {2} and {1} characters long.", MinimumLength = UserMinLengthPassword)]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [Compare(nameof(Password))]
+        [DataType(DataType.Password)]
+        public string ConfirmPassword { get; set; }
+
+        /// <summary>
+        /// Contains the interest of the user
+        /// </summary>
+        [Required]
+        public int InterestId { get; set; }
+
+        public List<InterestViewModel>? Interests { get; set; } = new List<InterestViewModel>();
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LawAlert.Core.Attributes
+namespace LawAlert.Infrastructure.Attributes
 {
     public class CustomBirthDate
     {
@@ -14,7 +14,7 @@ namespace LawAlert.Core.Attributes
             protected override ValidationResult IsValid(object value, ValidationContext validationContext)
             {
                 // This assumes inclusivity, i.e. exactly six years ago is okay
-                if ((DateTime.Now.AddYears(-100).CompareTo(value) <= 0 && DateTime.Now.AddYears(-14).CompareTo(value) >= 0))
+                if ((DateTime.Now.AddYears(-100).CompareTo(value) <= 0 && DateTime.Now.AddYears(-14).CompareTo(value) <= 0))
                 {
                     return ValidationResult.Success;
                 }
