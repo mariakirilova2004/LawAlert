@@ -11,7 +11,7 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@300;500;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -79,11 +79,14 @@
                         <div class="navbar-nav mr-auto py-0">
                             <a href="index.html" class="nav-item nav-link active">Home</a>
                             <a href="about.html" class="nav-item nav-link">About</a>
-                            <a href="team.html" class="nav-item nav-link">Laws</a>
+                            @if (User.Identity.IsAuthenticated)
+                            {                      
+                                <a asp-controller="Law" asp-action="All" class="nav-item nav-link">Laws</a>
+                            }
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
                     </div>
-                    <partial name="_LoginPartial"/>
+                    <partial name="_LoginPartial" />
                 </nav>
             </div>
         </div>
@@ -178,8 +181,6 @@
         </div>
     </div>
     <!-- Footer End -->
-
-
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary px-3 back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
@@ -201,7 +202,7 @@
     <!-- Template Javascript -->
     <script src="~/js/main.js"></script>
 
-    <script src="~/lib/toastr/toastr.min.js" type="text/html"/></script>
+    <script src="~/lib/toastr/toastr.min.js" type="text/html" /></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
