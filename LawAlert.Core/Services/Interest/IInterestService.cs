@@ -10,5 +10,9 @@ namespace LawAlert.Core.Services.Interest
     public interface IInterestService
     {
         List<InterestViewModel> GetInterestViewModels();
+
+        string GetTypeById(int id);
+
+        List<InterestViewModel> GetInterestsViews();
     }
 }

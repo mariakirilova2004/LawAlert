@@ -16,6 +16,16 @@ namespace LawAlert.Core.Services.Interest
             this.dbContext = _dbContext;
         }
 
+        public List<InterestViewModel> GetInterestsViews()
+        {
+            return this.dbContext.Interests.Select(i => new InterestViewModel()
+            {
+                Id = i.Id,
+                Type = i.Type
+            })
+            .ToList();
+        }
+
         public List<InterestViewModel> GetInterestViewModels()
         {
             return this.dbContext.Interests.Select(i => new InterestViewModel()
@@ -24,6 +34,11 @@ namespace LawAlert.Core.Services.Interest
                 Type = i.Type
             })
             .ToList();
+        }
+
+        public string GetTypeById(int id)
+        {
+            return dbContext.Interests?.Where(i => i.Id == id).FirstOrDefault().Type;
         }
     }
 }

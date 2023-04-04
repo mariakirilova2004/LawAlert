@@ -12,11 +12,11 @@ namespace LawAlert.Core.Models.Law
     {
         [DisplayName("Search by Text")]
         public string SearchText { get; init; }
-        public int LawsPerPage { get; init; } = 10;
+        public int LawsPerPage { get; init; } = 3;
         public int CurrentPage { get; init; } = 1;
         public int TotalLawsCount { get; set; }
         public List<LawViewModel> Laws { get; set; }
-        public int InterestId { get; set; }
+        public string Interest { get; set; }
         public List<InterestViewModel> Interests { get; set; }
     }
 }

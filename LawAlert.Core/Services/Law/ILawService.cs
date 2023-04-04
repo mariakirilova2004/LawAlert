@@ -9,6 +9,6 @@ namespace LawAlert.Core.Services.Law
 {
     public interface ILawService
     {
-        AllLawsQueryModel All(string SearchText, int CurrentPage, int LawsPerPage);
+        public AllLawsQueryModel All(string SearchText, string Interest, int CurrentPage, int LawsPerPage);
     }
 }
