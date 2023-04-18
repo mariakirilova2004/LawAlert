@@ -4,6 +4,7 @@ using LawAlert.Core.Services;
 using LawAlert.Core.Services.User;
 using LawAlert.Core.Services.Interest;
 using LawAlert.Core.Services.Law;
+using LawAlert.Core.Services.Chapter;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -15,6 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ILogger, Logger<LawController>>();
             services.AddScoped<ILogger, Logger<UserService>>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IChapterService, ChapterService>();
             services.AddScoped<ILawService, LawService>();
             services.AddScoped<IInterestService, InterestService>();
 

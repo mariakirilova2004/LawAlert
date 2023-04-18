@@ -1,5 +1,6 @@
 ﻿using LawAlert.Core.Models.Law;
 using LawAlert.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,22 +20,20 @@ namespace LawAlert.Core.Services.Law
 
         public AllLawsQueryModel All(string SearchText, string Interest, int CurrentPage, int LawsPerPage)
         {
-            var lawsQuery = this.dbContext.Laws.ToList();
+            var lawsQuery = this.dbContext.Laws.Include(l => l.Interest).ToList();
 
             if (SearchText != null && SearchText != "")
             {
-                lawsQuery = lawsQuery.Where(lq => lq.Details.Contains(SearchText)).ToList();
+                lawsQuery = lawsQuery.Where(lq => lq.Name.ToLower().Contains(SearchText.ToLower()) || lq.Details.ToLower().Contains(SearchText.ToLower())).ToList();
             }
 
             if (Interest != null && Interest != "All")
             {
-                lawsQuery = lawsQuery.Where(lq => lq.Interest.Type.CompareTo(Interest) == 0).ToList();
+                lawsQuery = lawsQuery.Where(lq => lq.Interest.Type == Interest).ToList();
             }
 
             var laws = lawsQuery
-                .Skip((CurrentPage - 1) * LawsPerPage)
-                .Take(LawsPerPage)
-                .Select(l => new LawViewModel
+                .Select(l => new Models.Law.LawViewModel
                 {
                     Id = l.Id,
                     Name = l.Name,
