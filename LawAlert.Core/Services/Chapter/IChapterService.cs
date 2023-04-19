@@ -1,4 +1,4 @@
-﻿using LawAlert.Core.Models.Law;
+﻿using LawAlert.Core.Models.Chapter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,6 @@ namespace LawAlert.Core.Services.Chapter
 {
     public interface IChapterService
     {
-        public AllChaptersQueryModel All(string SearchText, int CurrentPage, int ChaptersPerPage);
+        AllChaptersQueryModel All(string SearchText, int CurrentPage, int ChaptersPerPage, int id);
     }
 }

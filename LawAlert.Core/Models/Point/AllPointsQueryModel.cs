@@ -7,15 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LawAlert.Core.Models.Law
+namespace LawAlert.Core.Models.Point
 {
-    public class AllChaptersQueryModel
+    public class AllPointsQueryModel
     {
+        public string ArticleName { get; set; }
+        public string ChapterName { get; set; }
+        public string LawName { get; set; }
+
         [DisplayName("Search by Text")]
         public string SearchText { get; init; }
-        public int ChaptersPerPage { get; init; } = 3;
+        public int PointsPerPage { get; init; } = 1;
         public int CurrentPage { get; init; } = 1;
-        public int TotalChaptersCount { get; set; }
-        public List<ChapterViewModel> Chapters { get; set; }
+        public int TotalPointsCount { get; set; }
+        public List<PointViewModel> Points { get; set; }
     }
 }

@@ -1,12 +1,12 @@
-﻿@using LawAlert.Core.Models.Chapter
-@model ChapterViewModel
+﻿@using LawAlert.Core.Models.Article
+@model ArticleViewModel
 <div class="d-flex mb-4">
     <div class="btn-primary btn-lg-square px-3" style="border-radius: 50px;">
-        <form asp-controller="Article" asp-action="All" asp-route-id="@Model.Id" method="get">
+        <form asp-controller="Point" asp-action="All" asp-route-id="@Model.Id" method="get">
             <button type="submit" class="text-secondary m-0">...</button>
         </form>
     </div>
     <div class="ml-4">
-        <h5 class="text-secondary m-0">@Model.Name</h5>
+        <h5 class="text-secondary m-0">@Model.Details</h5>
     </div>
 </div>

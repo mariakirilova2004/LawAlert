@@ -16,10 +16,6 @@ namespace LawAlert.Infrastructure.Data.Entities
         public int Id { get; set; }
 
         [Required]
-        [MinLength(PointMinLengthNumber), MaxLength(PointMaxLengthNumber)]
-        public int Number { get; set; }
-
-        [Required]
         [StringLength(PointMaxLengthDescription, MinimumLength = PointMinLengthDescription)]
         public string Description { get; set; }
 

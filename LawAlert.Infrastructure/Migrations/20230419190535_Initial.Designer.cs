@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LawAlert.Infrastructure.Migrations
 {
     [DbContext(typeof(LawAlertDbContext))]
-    [Migration("20230313134919_Initial")]
+    [Migration("20230419190535_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -106,10 +106,10 @@ namespace LawAlert.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e7606def-4276-4e06-b5c2-2810dd0c0bc6",
+                            Id = "a6896efc-6e32-4a97-afe6-2af590c7d332",
                             AccessFailedCount = 0,
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConcurrencyStamp = "98c01819-a3f7-4466-8162-29d290ad93dc",
+                            ConcurrencyStamp = "57b2d2a5-5614-4ce2-85f3-2b261b773a5c",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             FirstName = "User",
@@ -117,10 +117,10 @@ namespace LawAlert.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGd9B0oXWzEY5lIIHG0wdbNMD7JPm0NaOLlyob54jtPfU7qRzzgA1w7TDsUFnXgf/g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENj4tCmSzR74iyYknZUrqe9Sl6aEKMtVHJ+JTdfJF35HaFRIlb4g04c71AYLM8+nVg==",
                             PhoneNumber = "0888888888",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "53074191-b880-48af-ab78-c1e831ee7b22",
+                            SecurityStamp = "359d9fcd-cd5a-4287-871d-2aab1b1f1801",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -139,8 +139,8 @@ namespace LawAlert.Infrastructure.Migrations
 
                     b.Property<string>("Details")
                         .IsRequired()
-                        .HasMaxLength(400)
-                        .HasColumnType("nvarchar(400)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<bool>("Updated")
                         .HasColumnType("bit");
@@ -162,6 +162,10 @@ namespace LawAlert.Infrastructure.Migrations
 
                     b.Property<int>("LawId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -234,8 +238,8 @@ namespace LawAlert.Infrastructure.Migrations
 
                     b.Property<string>("Details")
                         .IsRequired()
-                        .HasMaxLength(400)
-                        .HasColumnType("nvarchar(400)");
+                        .HasMaxLength(10000)
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("InterestId")
                         .HasColumnType("int");
@@ -265,12 +269,8 @@ namespace LawAlert.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(400)
-                        .HasColumnType("nvarchar(400)");
-
-                    b.Property<int>("Number")
-                        .HasMaxLength(300)
-                        .HasColumnType("int");
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
 
                     b.HasKey("Id");
 

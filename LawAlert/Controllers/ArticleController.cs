@@ -3,36 +3,38 @@ using Microsoft.AspNetCore.Mvc;
 using LawAlert.Core.Services.Law;
 using LawAlert.Core.Services.Interest;
 using LawAlert.Core.Services.Chapter;
-using LawAlert.Core.Models.Chapter;
+using LawAlert.Core.Models.Article;
+using LawAlert.Core.Services.Article;
 using Microsoft.AspNetCore.Authorization;
 
 namespace LawAlert.Controllers
 {
     [AutoValidateAntiforgeryToken]
     [Authorize]
-    public class ChapterController : Controller
+    public class ArticleController : Controller
     {
-        private readonly IChapterService chapterService;
+        private readonly IArticleService articleService;
         private readonly ILogger logger;
 
-        public ChapterController(IChapterService _chapterService,
+        public ArticleController(IArticleService _articleService,
                              ILogger logger)
         {
-            this.chapterService = _chapterService;
+            this.articleService = _articleService;
             this.logger = logger;
         }
         [HttpGet]
-        public IActionResult All([FromQuery] AllChaptersQueryModel query, int id)
+        public IActionResult All([FromQuery] AllArticlesQueryModel query, int id)
         {
-            var queryResult = this.chapterService.All(
+            var queryResult = this.articleService.All(
                 query.SearchText,
                 query.CurrentPage,
-                query.ChaptersPerPage,
+                query.ArticlesPerPage,
                 id);
 
+            query.ChapterName = queryResult.ChapterName;
             query.LawName = queryResult.LawName;
-            query.TotalChaptersCount = queryResult.TotalChaptersCount;
-            query.Chapters = queryResult.Chapters;
+            query.TotalArticlesCount = queryResult.TotalArticlesCount;
+            query.Articles = queryResult.Articles;
             return View(query);
         }
     }

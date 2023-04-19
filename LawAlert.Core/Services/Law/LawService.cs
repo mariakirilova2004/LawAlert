@@ -40,7 +40,7 @@ namespace LawAlert.Core.Services.Law
                     Details = l.Details
                 }).ToList();
 
-            laws = laws.OrderBy(l => l.Name).ToList();
+            laws = laws.OrderBy(l => l.Id).ToList();
 
             var totalLaws = lawsQuery.Count();
 

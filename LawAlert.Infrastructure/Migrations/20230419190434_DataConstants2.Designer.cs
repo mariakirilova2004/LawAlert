@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LawAlert.Infrastructure.Migrations
 {
     [DbContext(typeof(LawAlertDbContext))]
-    [Migration("20230418191045_ChapterName")]
-    partial class ChapterName
+    [Migration("20230419190434_DataConstants2")]
+    partial class DataConstants2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -106,10 +106,10 @@ namespace LawAlert.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cbe7e253-0330-4d0d-907e-3617ed3314c7",
+                            Id = "648b6ed3-72e0-4d86-aa22-3c482f0b61c4",
                             AccessFailedCount = 0,
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConcurrencyStamp = "e1361889-a4cd-45cf-85ed-18b243e8593e",
+                            ConcurrencyStamp = "cb084804-1a5c-4e5a-93c0-86c61d2c610c",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             FirstName = "User",
@@ -117,10 +117,10 @@ namespace LawAlert.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEC1QvCrodxbVkUWqp/axlYkwa2PUR3F93GODSsINFsM+IwKoPrPRtWYWjJQr1dr0yw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK9cL/ZYTLHHUgl0MFNKvKxpDUbqT4GiNiiUquRbnExg+X+U3AseTMHlnvz57MV2cg==",
                             PhoneNumber = "0888888888",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "81d5d15e-39ed-4a35-80fe-de99ef30a7eb",
+                            SecurityStamp = "6a5094d7-7d77-4580-998b-d920ccb617c5",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -139,8 +139,8 @@ namespace LawAlert.Infrastructure.Migrations
 
                     b.Property<string>("Details")
                         .IsRequired()
-                        .HasMaxLength(400)
-                        .HasColumnType("nvarchar(400)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<bool>("Updated")
                         .HasColumnType("bit");
@@ -238,8 +238,8 @@ namespace LawAlert.Infrastructure.Migrations
 
                     b.Property<string>("Details")
                         .IsRequired()
-                        .HasMaxLength(400)
-                        .HasColumnType("nvarchar(400)");
+                        .HasMaxLength(10000)
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("InterestId")
                         .HasColumnType("int");
@@ -269,12 +269,8 @@ namespace LawAlert.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(400)
-                        .HasColumnType("nvarchar(400)");
-
-                    b.Property<int>("Number")
-                        .HasMaxLength(300)
-                        .HasColumnType("int");
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
 
                     b.HasKey("Id");
 

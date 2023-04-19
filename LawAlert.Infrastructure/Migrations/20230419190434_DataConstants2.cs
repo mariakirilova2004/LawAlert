@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LawAlert.Infrastructure.Migrations
 {
-    public partial class Initial : Migration
+    public partial class DataConstants2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -184,7 +184,7 @@ namespace LawAlert.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Details = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: false),
+                    Details = table.Column<string>(type: "nvarchar(max)", maxLength: 10000, nullable: false),
                     InterestId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -204,6 +204,7 @@ namespace LawAlert.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LawId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -223,7 +224,7 @@ namespace LawAlert.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Details = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: false),
+                    Details = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     ChapterId = table.Column<int>(type: "int", nullable: false),
                     Updated = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -244,8 +245,7 @@ namespace LawAlert.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Number = table.Column<int>(type: "int", maxLength: 300, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
                     ArticleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -262,7 +262,7 @@ namespace LawAlert.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "BirthDate", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "e7606def-4276-4e06-b5c2-2810dd0c0bc6", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "98c01819-a3f7-4466-8162-29d290ad93dc", "admin@mail.com", false, "User", "Userov", false, null, "ADMIN@MAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEGd9B0oXWzEY5lIIHG0wdbNMD7JPm0NaOLlyob54jtPfU7qRzzgA1w7TDsUFnXgf/g==", "0888888888", false, "53074191-b880-48af-ab78-c1e831ee7b22", false, "Admin" });
+                values: new object[] { "648b6ed3-72e0-4d86-aa22-3c482f0b61c4", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "cb084804-1a5c-4e5a-93c0-86c61d2c610c", "admin@mail.com", false, "User", "Userov", false, null, "ADMIN@MAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEK9cL/ZYTLHHUgl0MFNKvKxpDUbqT4GiNiiUquRbnExg+X+U3AseTMHlnvz57MV2cg==", "0888888888", false, "6a5094d7-7d77-4580-998b-d920ccb617c5", false, "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Interests",

@@ -31,14 +31,14 @@ namespace LawAlert.Infrastructure.Data
             public const int LawMinLengthName = 5;
             public const int LawMaxLengthName = 50;
 
-            public const int LawMinLengthDetails = 20;
-            public const int LawMaxLengthDetails = 400;
+            public const int LawMinLengthDetails = 0;
+            public const int LawMaxLengthDetails = 10000;
         }
 
         public class Article
         {
             public const int ArticleMinLengthDetails = 20;
-            public const int ArticleMaxLengthDetails = 400;
+            public const int ArticleMaxLengthDetails = 500;
         }
 
         public class Interest
@@ -51,12 +51,9 @@ namespace LawAlert.Infrastructure.Data
         }
 
         public class Point
-        {
-            public const int PointMinLengthNumber = 0;
-            public const int PointMaxLengthNumber = 300;
-                             
+        {                             
             public const int PointMinLengthDescription = 20;
-            public const int PointMaxLengthDescription = 400;
+            public const int PointMaxLengthDescription = 2000;
         }
     }
 }

@@ -2,7 +2,9 @@
 @model LawViewModel
 <div class="d-flex mb-4">
     <div class="btn-primary btn-lg-square px-3" style="border-radius: 50px;">
-        <h5 class="text-secondary m-0" asp-controller="Chapter" asp-action="All">...</h5>
+        <form asp-controller="Chapter" asp-action="All" asp-route-id="@Model.Id" method="get">
+            <button type="submit" class="text-secondary m-0">...</button>
+        </form>        
     </div>
     <div class="ml-4">
         <h5 class="text-secondary m-0">@Model.Name</h5>

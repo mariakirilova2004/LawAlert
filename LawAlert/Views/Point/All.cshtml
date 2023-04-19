@@ -1,5 +1,5 @@
-﻿@using LawAlert.Core.Models.Chapter
-@model AllChaptersQueryModel
+﻿@using LawAlert.Core.Models.Point
+@model AllPointsQueryModel
 <!-- Page Header Start -->
 <div class="container-fluid bg-page-header" style="margin-bottom: 90px;">
     <div class="container">
@@ -10,7 +10,11 @@
                 <i class="fa fa-angle-double-right pt-1 px-3"></i>
                 <p class="m-0 text-uppercase">@Model.LawName</p>
                 <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                <p class="m-0 text-uppercase">Chapters</p>
+                <p class="m-0 text-uppercase">@Model.ChapterName</p>
+                <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                <p class="m-0 text-uppercase">@Model.ArticleName</p>
+                <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                <p class="m-0 text-uppercase">Points</p>
             </div>
         </div>
     </div>
@@ -26,7 +30,7 @@
                 </div>
             </div>
             <div class="col-lg-6 pt-5 pb-lg-5">
-                <div class="feature-text bg-white rounded p-lg-5"  style="border:solid 1px grey">
+                <div class="feature-text bg-white rounded p-lg-5" style="border:solid 1px grey">
                     <form style="margin: 50px">
                         <div class="row">
                             <div class="form-group col-md-5">
@@ -38,20 +42,54 @@
                             </div>
                         </div>
                     </form>
-                    @if (!Model.Chapters.Any())
-                    {
-                        <h2 class="text-center">No laws found by the given criteria!</h2>
+                    @{
+                        var previousPage = Model.CurrentPage - 1;
+                        if (previousPage < 1)
+                        {
+                            previousPage = 1;
+                        }
+
+                        var maxPage = Math.Ceiling((double)Model.TotalPointsCount /
+                        Model.PointsPerPage);
                     }
 
-                    @if (@Model.Chapters == null)
+                    <div class="row md-4" style="margin: 20px">
+                        <div class="col-md-6 d-grid gap-2 d-mb-flex justify-content-md-start">
+                            <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+                               asp-controller="Point"
+                               asp-action="All"
+                               asp-route-currentPage="@previousPage"
+                               asp-route-SearchText="@Model.SearchText"><<</a>
+                        </div>
+
+                        @{
+                            var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
+            !Model.Points.Any();
+                        }
+
+                        <div class="col-md-6 d-grid gap-2 d-mb-flex justify-content-md-end">
+                            <a class="btn btn-primary
+    @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
+                               asp-controller="Point"
+                               asp-action="All"
+                               asp-route-currentPage="@(Model.CurrentPage + 1)"
+                               asp-route-SearchText="@Model.SearchText">>></a>
+                        </div>
+                    </div>
+                    @if (!Model.Points.Any())
+                    {
+                        <h2 class="text-center">No points found by the given criteria!</h2>
+                    }
+
+                    @if (@Model.Points == null)
                     {
                         <h3>Coming soon...</h3>
                     }
                     else
                     {
-                        @foreach (var chapter in @Model.Chapters)
+                        @foreach (var point in @Model.Points)
                         {
-                            <partial name="_ChapterPartial" model="chapter" />
+                            <partial name="_PointPartial" model="point" />
                         }
                     }
                 </div>
@@ -61,93 +99,93 @@
 </div>
 <!-- Features End -->
 @*<!-- Services Start -->
-<div class="container-fluid py-5">
+    <div class="container-fluid py-5">
     <div class="container py-5">
-        <div class="row">
-            <div class="col pt-5 pt-lg-0">
-                <form style="margin: 50px">
-                    <div class="row">
-                        <div class="form-group col-md-3">
-                            <label asp-for="SearchText"></label>
-                            <input type="text" asp-for="SearchText" class="form-control" placeholder="...">
-                        </div>
-                        <div class="form-group col col-md-3">
-                            <div class="form-group">
-                                <label asp-for="Interest">Interest</label>
-                                <select asp-for="Interest" class="form-control">
-                                    <option value="All">All</option>
-                                    @foreach (var interest in Model.Interests)
-                                    {
-                                        <option value="@interest.Type">@interest.Type</option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                        <div class="text-center" style="margin-top: 50px">
-                            <input type="submit" value="Search" class="btn btn-primary" />
-                        </div>
-                    </div>
-                </form>
-                <div class="bg-primary rounded" style="height: 200px;"></div>
-                <div class="owl-carousel service-carousel position-relative" style="margin-top: -100px; padding: 0 30px;">
-                    @{
-                        var previousPage = Model.CurrentPage - 1;
-                        if (previousPage < 1)
-                        {
-                            previousPage = 1;
-                        }
-
-                        var maxPage = Math.Ceiling((double)Model.TotalLawsCount /
-                        Model.LawsPerPage);
-                    }
-
-                    <div class="row md-4">
-                        <div class="col-md-6 d-grid gap-2 d-mb-flex justify-content-md-start">
-                            <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
-                               asp-controller="Room"
-                               asp-action="All"
-                               asp-route-currentPage="@previousPage"
-                               asp-route-SearchText="@Model.SearchText"
-                               asp-route-Type="@Model.Interest"><<</a>
-                        </div>
-
-                        @{
-                            var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
-            !Model.Laws.Any();
-                        }
-
-                        <div class="col-md-6 d-grid gap-2 d-mb-flex justify-content-md-end">
-                            <a class="btn btn-primary
-                    @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
-                               asp-controller="Room"
-                               asp-action="All"
-                               asp-route-currentPage="@(Model.CurrentPage + 1)"
-                               asp-route-SearchText="@Model.SearchText"
-                               asp-route-Type="@Model.Interest">>></a>
-                        </div>
-                    </div>
-
-                    @if (!Model.Laws.Any())
-                    {
-                        <h2 class="text-center">No laws found by the given criteria!</h2>
-                    }
-
-                    @if (@Model.Laws == null)
-                    {
-                        <h3>Coming soon...</h3>
-                    }
-                    else
-                    {
-                        @foreach (var law in @Model.Laws)
-                        {
-                            <partial name="_LawPartial" model="law" />
-                        }
-                    }
-                </div>
-            </div>
-        </div>
+    <div class="row">
+    <div class="col pt-5 pt-lg-0">
+    <form style="margin: 50px">
+    <div class="row">
+    <div class="form-group col-md-3">
+    <label asp-for="SearchText"></label>
+    <input type="text" asp-for="SearchText" class="form-control" placeholder="...">
     </div>
-</div>*@
+    <div class="form-group col col-md-3">
+    <div class="form-group">
+    <label asp-for="Interest">Interest</label>
+    <select asp-for="Interest" class="form-control">
+    <option value="All">All</option>
+    @foreach (var interest in Model.Interests)
+    {
+    <option value="@interest.Type">@interest.Type</option>
+    }
+    </select>
+    </div>
+    </div>
+    <div class="text-center" style="margin-top: 50px">
+    <input type="submit" value="Search" class="btn btn-primary" />
+    </div>
+    </div>
+    </form>
+    <div class="bg-primary rounded" style="height: 200px;"></div>
+    <div class="owl-carousel service-carousel position-relative" style="margin-top: -100px; padding: 0 30px;">
+    @{
+    var previousPage = Model.CurrentPage - 1;
+    if (previousPage < 1)
+    {
+    previousPage = 1;
+    }
+
+    var maxPage = Math.Ceiling((double)Model.TotalLawsCount /
+    Model.LawsPerPage);
+    }
+
+    <div class="row md-4">
+    <div class="col-md-6 d-grid gap-2 d-mb-flex justify-content-md-start">
+    <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+    asp-controller="Room"
+    asp-action="All"
+    asp-route-currentPage="@previousPage"
+    asp-route-SearchText="@Model.SearchText"
+    asp-route-Type="@Model.Interest"><<</a>
+    </div>
+
+    @{
+    var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
+    !Model.Laws.Any();
+    }
+
+    <div class="col-md-6 d-grid gap-2 d-mb-flex justify-content-md-end">
+    <a class="btn btn-primary
+    @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
+    asp-controller="Room"
+    asp-action="All"
+    asp-route-currentPage="@(Model.CurrentPage + 1)"
+    asp-route-SearchText="@Model.SearchText"
+    asp-route-Type="@Model.Interest">>></a>
+    </div>
+    </div>
+
+    @if (!Model.Laws.Any())
+    {
+    <h2 class="text-center">No laws found by the given criteria!</h2>
+    }
+
+    @if (@Model.Laws == null)
+    {
+    <h3>Coming soon...</h3>
+    }
+    else
+    {
+    @foreach (var law in @Model.Laws)
+    {
+    <partial name="_LawPartial" model="law" />
+    }
+    }
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>*@
 <!-- Services End -->
 @*<!-- Services Start -->
     <div class="container-fluid py-5">

@@ -2,9 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using LawAlert.Core.Services.Law;
 using LawAlert.Core.Services.Interest;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LawAlert.Controllers
 {
+    [AutoValidateAntiforgeryToken]
+    [Authorize]
     public class LawController : Controller
     {
         private readonly ILawService lawService;
