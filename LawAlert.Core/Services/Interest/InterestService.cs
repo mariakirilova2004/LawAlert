@@ -16,6 +16,11 @@ namespace LawAlert.Core.Services.Interest
             this.dbContext = _dbContext;
         }
 
+        public Infrastructure.Data.Entities.Interest GetInterestById(int id)
+        {
+            return this.dbContext.Interests.FirstOrDefault(i => i.Id == id);
+        }
+
         public List<InterestViewModel> GetInterestsViews()
         {
             return this.dbContext.Interests.Select(i => new InterestViewModel()

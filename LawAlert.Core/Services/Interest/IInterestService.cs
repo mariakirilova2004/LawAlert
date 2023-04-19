@@ -13,6 +13,8 @@ namespace LawAlert.Core.Services.Interest
 
         string GetTypeById(int id);
 
+        Infrastructure.Data.Entities.Interest GetInterestById(int id);
+
         List<InterestViewModel> GetInterestsViews();
     }
 }

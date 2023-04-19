@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace WeVolunteer.Extensions
+namespace LawAlert.Extensions
 {
     public static class ClaimsPrincipalsExtensions
     {

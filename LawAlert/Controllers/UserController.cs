@@ -1,14 +1,14 @@
 ﻿using Ganss.Xss;
+using LawAlert.Core.Constants;
 using LawAlert.Core.Models.User;
 using LawAlert.Core.Services.Interest;
 using LawAlert.Core.Services.User;
+using LawAlert.Extensions;
 using LawAlert.Infrastructure.Data.Entities.Accounts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
-using WeVolunteer.Core.Constants;
-using WeVolunteer.Extensions;
 
 namespace LawAlert.Controllers
 {
@@ -83,7 +83,8 @@ namespace LawAlert.Controllers
                 LastName = sanitalizer.Sanitize(model.LastName),
                 Email = sanitalizer.Sanitize(model.Email),
                 PhoneNumber = sanitalizer.Sanitize(model.PhoneNumber),
-                BirthDate = model.BirthDate
+                BirthDate = model.BirthDate,
+                Interests = new List<Infrastructure.Data.Entities.Interest>() { interestService.GetInterestById(model.InterestId) }
             };
 
             var result = await userManager.CreateAsync(user, model.Password);

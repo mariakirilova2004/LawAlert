@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WeVolunteer.Core.Constants
+namespace LawAlert.Core.Constants
 {
     public static class MessageConstant
     {
