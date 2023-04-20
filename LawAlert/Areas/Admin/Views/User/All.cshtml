@@ -1,0 +1,38 @@
+﻿@using LawAlert.Core.Models.User
+@model AllUsersQueryModel
+
+<!-- Page Header Start -->
+<div class="container-fluid bg-page-header" style="margin-bottom: 90px;">
+    <div class="container">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+            <h3 class="display-3 text-white text-uppercase">Users</h3>
+            <div class="d-inline-flex text-white">
+                <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                <p class="m-0 text-uppercase">Users</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+<!-- Team Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="text-center pb-2">
+            <h6 class="text-uppercase">Our Users</h6>
+            <h1 class="mb-4">Meet Our Users</h1>
+        </div>
+        <div class="row" style="margin-bottom: 20px">
+            <div class="col-12">
+                <div class="bg-primary rounded" style="height: 200px;"></div>
+                <div class="owl-carousel team-carousel position-relative" style="margin-top: -97px; padding: 0 30px;">
+                    @foreach (var user in @Model.Users)
+                    {
+                        <partial name="_UserPartial" model="user" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Team End -->

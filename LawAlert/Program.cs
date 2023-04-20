@@ -21,12 +21,13 @@ builder.Services.AddResponseCaching();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 
-builder.Services.AddDefaultIdentity<User>(options => {
+builder.Services.AddDefaultIdentity<User>(options =>
+{
     options.SignIn.RequireConfirmedAccount = false;
     options.SignIn.RequireConfirmedEmail = false;
     options.SignIn.RequireConfirmedPhoneNumber = false;
     options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireUppercase = false; 
+    options.Password.RequireUppercase = false;
     options.Password.RequireLowercase = false;
 })
     .AddRoles<IdentityRole>()

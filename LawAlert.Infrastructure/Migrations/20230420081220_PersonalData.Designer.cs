@@ -4,6 +4,7 @@ using LawAlert.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LawAlert.Infrastructure.Migrations
 {
     [DbContext(typeof(LawAlertDbContext))]
-    partial class LawAlertDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230420081220_PersonalData")]
+    partial class PersonalData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,10 +106,10 @@ namespace LawAlert.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b495f801-7e09-4265-9c14-08016600d8ce",
+                            Id = "9e4cf816-f041-4ab4-ac3b-5df636a9c984",
                             AccessFailedCount = 0,
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConcurrencyStamp = "766abc67-80f1-4f75-bdb6-47f30a98a00a",
+                            ConcurrencyStamp = "c6581b71-e401-49f2-88b4-2870df6d7933",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             FirstName = "User",
@@ -115,10 +117,10 @@ namespace LawAlert.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@MAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJmFay6io2ttwtlL3WBotpwCYxeC5GQ1ESovwmOKj3Yeem8r3+SwdA5xjLi6GL0BtQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFp9nKpcnLfq8UVw+5S6b5LzRG+J9eEjv65f14jEb6LPyNvbhfsfUPJ3ExObaEONSw==",
                             PhoneNumber = "0888888888",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b2477a97-d675-4cc3-96d6-d6a6360683a9",
+                            SecurityStamp = "93baa22a-e5d5-43e1-8720-13e518cd6c2a",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -252,27 +254,6 @@ namespace LawAlert.Infrastructure.Migrations
                     b.HasIndex("InterestId");
 
                     b.ToTable("Laws");
-                });
-
-            modelBuilder.Entity("LawAlert.Infrastructure.Data.Entities.PersonalData", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PersonalData");
                 });
 
             modelBuilder.Entity("LawAlert.Infrastructure.Data.Entities.Point", b =>

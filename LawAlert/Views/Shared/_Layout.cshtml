@@ -32,8 +32,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3 bg-secondary d-none d-lg-block">
-                <a href="index.html" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-                    <h1 class="m-0 display-4 text-primary text-uppercase">Justice</h1>
+                <a asp-controller="Home" asp-action="Index" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
+                    <h1 class="m-0 display-4 text-primary text-uppercase">Law Alert</h1>
                 </a>
             </div>
             <div class="col-lg-9">
@@ -69,21 +69,21 @@
                     </div>
                 </div>
                 <nav class="navbar navbar-expand-lg bg-white navbar-light p-0">
-                    <a href="index.html" class="navbar-brand d-block d-lg-none">
-                        <h1 class="m-0 display-4 text-primary text-uppercase">Justice</h1>
+                    <a asp-controller="Home" asp-action="Index" class="navbar-brand d-block d-lg-none">
+                        <h1 class="m-0 display-4 text-primary text-uppercase">Law Alert</h1>
                     </a>
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
-                            <a href="about.html" class="nav-item nav-link">About</a>
+                            <a asp-controller="Home" asp-action="Index" class="nav-item nav-link active">Home</a>
+                            <a asp-controller="Home" asp-action="About" class="nav-item nav-link">About</a>
                             @if (User.Identity.IsAuthenticated)
-                            {                      
+                            {
                                 <a asp-controller="Law" asp-action="All" class="nav-item nav-link">Laws</a>
                             }
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <a asp-controller="Home" asp-action="Contact" class="nav-item nav-link">Contact</a>
                         </div>
                     </div>
                     <partial name="_LoginPartial" />
@@ -127,8 +127,8 @@
         </div>
         <div class="row pt-5">
             <div class="col-lg-3 col-md-6 mb-5">
-                <a href="index.html" class="navbar-brand">
-                    <h1 class="m-0 mt-n2 display-4 text-primary text-uppercase">Justice</h1>
+                <a asp-controller="Home" asp-action="Index" class="navbar-brand">
+                    <h1 class="m-0 mt-n2 display-4 text-primary text-uppercase">LawAlert</h1>
                 </a>
                 <p>Volup amet magna clita tempor. Tempor sea eos vero ipsum. Lorem lorem sit sed elitr sed kasd et</p>
                 <div class="d-flex justify-content-start mt-4">
@@ -141,23 +141,22 @@
             <div class="col-lg-3 col-md-6 mb-5">
                 <h4 class="font-weight-semi-bold text-primary mb-4">Popular Links</h4>
                 <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>About</a>
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Services</a>
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Attorney</a>
-                    <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>Contact</a>
+                    <a class="text-white mb-2" asp-controller="Home" asp-action="Index"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                    <a class="text-white mb-2" asp-controller="Home" asp-action="About"><i class="fa fa-angle-right mr-2"></i>About</a>
+                    <a class="text-white mb-2" asp-controller="Law" asp-action="All"><i class="fa fa-angle-right mr-2"></i>Laws</a>
+                    <a class="text-white" asp-controller="Home" asp-action="Contact"><i class="fa fa-angle-right mr-2"></i>Contact</a>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-5">
+            @*            <div class="col-lg-3 col-md-6 mb-5">
                 <h4 class="font-weight-semi-bold text-primary mb-4">Quick Links</h4>
                 <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>FAQs</a>
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Help</a>
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Terms</a>
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Privacy</a>
-                    <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>Site Map</a>
+                <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>FAQs</a>
+                <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Help</a>
+                <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Terms</a>
+                <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Privacy</a>
+                <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>Site Map</a>
                 </div>
-            </div>
+                </div>*@
             <div class="col-lg-3 col-md-6 mb-5">
                 <h4 class="font-weight-semi-bold text-primary mb-4">Newsletter</h4>
                 <p>Rebum labore lorem dolores kasd est, et ipsum amet et at kasd, ipsum sea tempor magna tempor. Accu kasd sed ea duo ipsum.</p>
@@ -173,10 +172,7 @@
         </div>
         <div class="row p-4 mt-5 mx-0" style="background: rgba(256, 256, 256, .05);">
             <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
-                <p class="m-0 text-white">&copy; <a class="font-weight-bold" href="#">Your Site Name</a>. All Rights Reserved.</p>
-            </div>
-            <div class="col-md-6 text-center text-md-right">
-                <p class="m-0 text-white">Designed by <a class="font-weight-bold" href="https://htmlcodex.com">HTML Codex</a></p>
+                <p class="m-0 text-white">&copy; <a class="font-weight-bold" href="#">LawAlert</a>. All Rights Reserved.</p>
             </div>
         </div>
     </div>
@@ -202,7 +198,7 @@
     <!-- Template Javascript -->
     <script src="~/js/main.js"></script>
 
-    <script src="~/lib/toastr/toastr.min.js" type="text/html" /></script>
+    <script src="~/lib/toastr/toastr.min.js" type="text/html"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

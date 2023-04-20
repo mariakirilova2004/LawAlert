@@ -1,5 +1,6 @@
 ﻿using LawAlert.Core.Models.User;
 using LawAlert.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace LawAlert.Core.Services.User
                                           int usersPerPage = 10)
         {
 
-            var usersQuery = this.dbContext.Users.ToList();
+            var usersQuery = this.dbContext.Users.Include(u => u.Interests).ToList();
 
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
@@ -52,7 +53,7 @@ namespace LawAlert.Core.Services.User
                     PhoneNumber = u.PhoneNumber,
                     Email = u.Email,
                     BirthDate = u.BirthDate,
-                    Interest = u.Interests.First().Type
+                    Interest = u.Interests?.FirstOrDefault()?.Type
                 }).ToList();
 
             users = users.OrderByDescending(c => c.FirstName).ToList();

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 namespace LawAlert.Areas.Admin.Controllers
+
 {
 
     [Area("Admin")]

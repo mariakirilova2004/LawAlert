@@ -31,6 +31,7 @@ namespace LawAlert.Infrastructure.Data
         public DbSet<Chapter> Chapters { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<Point> Points { get; set; }
+        public DbSet<PersonalData> PersonalData { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -95,6 +96,9 @@ namespace LawAlert.Infrastructure.Data
 
             modelBuilder.Entity<Interest>()
                 .HasKey(i => i.Id);
+
+            modelBuilder.Entity<PersonalData>()
+                .HasKey(pd => pd.Id);
 
             base.OnModelCreating(modelBuilder);
         }
