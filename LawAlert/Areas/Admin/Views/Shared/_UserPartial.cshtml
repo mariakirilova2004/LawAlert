@@ -11,7 +11,7 @@
     <div class="team-img position-relative">
         @*<img class="img-fluid" src="img/team-1.jpg" alt="">*@
         <div class="team-social">
-            <form asp-area="Admin" asp-controller="User" asp-action="Forget" asp-route-Id="@Model.Id" method="get">
+            <form asp-area="Admin" asp-controller="User" asp-action="Forget" asp-route-Id="@Model.Id" method="post">
                 <button type="submit" class="text-secondary m-0">Delete</button>
             </form>
         </div>

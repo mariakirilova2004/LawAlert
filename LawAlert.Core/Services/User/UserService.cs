@@ -47,6 +47,7 @@ namespace LawAlert.Core.Services.User
             var users = usersQuery
                 .Select(u => new UserViewModel
                 {
+                    Id = u.Id,
                     UserName = u.UserName,
                     FirstName = u.FirstName,
                     LastName = u.LastName,
@@ -81,7 +82,8 @@ namespace LawAlert.Core.Services.User
 
                 if (user != null)
                 {
-                    this.dbContext.Remove(user);
+                    user.Email = "";
+                    this.dbContext.Update(user);
                     await this.dbContext.SaveChangesAsync();
                 }
 
